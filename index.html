@@ -1,14 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student List 2</title>
-    <link rel="stylesheet" href="studentlist.css" type="text/css">
-</head>
-<body>
-  <h1>Students 1991</h1>
-    
-  <script src="studentlist.js"></script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Hogwarts Student List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="studentlist.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Serif|Oswald|Quattrocent"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+
+    <h2><span class="headline">Hogwarts Students</span> of 1991</h2>
+
+    <div id="filter-content">
+      <p class="house-item" data-category="all">All</p>
+      <p class="house-item" data-category="Gryffindor">Gryffindor</p>
+      <p class="house-item" data-category="Hufflepuff">Hufflepuff</p>
+      <p class="house-item" data-category="Slytherin">Slytherin</p>
+      <p class="house-item" data-category="Ravenclaw">Ravenclaw</p>
+    </div>
+
+    <div id="sort-content">
+      <p class="sort-item firstname">First name</p>
+      <p class="sort-item lastname">Last name</p>
+      <p class="sort-item house">House</p>
+    </div>
+
+    <section id="modal">
+      <button>x</button>
+      <p class="modal-fullname"></p>
+      <p class="modal-house"></p>
+      <img class="modal-img" src="" alt="" />
+    </section>
+
+    <div class="container"></div>
+
+    <template>
+      <article>
+        <p data-fullname></p>
+        <p data-house></p>
+      </article>
+    </template>
+
+    <script src="studentlist.js"></script>
+  </body>
 </html>
