@@ -14,39 +14,68 @@
   </head>
 
   <body>
-
     <h2><span class="headline">Hogwarts Students</span> of 1991</h2>
 
     <div id="filter-content">
-      <p class="house-item" data-category="all">All</p>
-      <p class="house-item" data-category="Gryffindor">Gryffindor</p>
-      <p class="house-item" data-category="Hufflepuff">Hufflepuff</p>
-      <p class="house-item" data-category="Slytherin">Slytherin</p>
-      <p class="house-item" data-category="Ravenclaw">Ravenclaw</p>
+      <p class="house-item" data-category="all">All<span id="all"></span></p>
+      <p class="house-item" data-category="Gryffindor">Gryffindor<span id="gryf"> </span></p>
+      <p class="house-item" data-category="Hufflepuff">Hufflepuff<span id="huff"> </span></p>
+      <p class="house-item" data-category="Slytherin">Slytherin<span id="slyth"> </span></p>
+      <p class="house-item" data-category="Ravenclaw">Ravenclaw<span id="raw"> </span></p>
+    
     </div>
 
     <div id="sort-content">
       <p class="sort-item firstname">First name</p>
       <p class="sort-item lastname">Last name</p>
       <p class="sort-item house">House</p>
+      <p class="sort-item squads">Inquisitorial Squad<span id="inqNumber"></span></p>
+
     </div>
 
+    <div class="temp">
+    <div id="squad">
+      <!--<p class="squad-fullname"></p>-->
+      <table id="squadtable">
+        <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody id="squadtablebody">
+
+      </tbody>
+      </table>
+      <button id="hideSquad">x</button>
+
+    </div>
+  </div>
     <section id="modal">
+
       <button>x</button>
+
       <p class="modal-fullname"></p>
       <p class="modal-house"></p>
+      <p class="modal-bloodtype"></p>
+
       <img class="modal-img" src="" alt="" />
+
     </section>
 
     <div class="container"></div>
 
     <template>
       <article>
+
         <p data-fullname></p>
         <p data-house></p>
+        <p class="removeThis">Expel</p>
+        <p class="addThis">Add to Inquisitorial Squad</p>
+        <p class="begone">Remove from Inquisitorial Squad</p>
+
       </article>
     </template>
 
-    <script src="studentlist.js"></script>
+    <script src="studentlist_2.js"></script>
   </body>
 </html>

@@ -1,23 +1,225 @@
+:root {
+  --gold: #bbaa15;
+  --dark-gold: #70660c;
+}
+
 body {
-    background-color: aliceblue;
+  background-color: aliceblue;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
-.gryffindor {
-    background-color: #ce3a0a;
-    color: #fdb02e
+h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3em;
+  text-align: center;
 }
 
-.hufflepuf {
-    background-color: #ffc02a;
-    color: #0b0000  
+.headline {
+  color: var(--gold);
 }
 
-.ravenclaw {
-    background-color: #395f9d;
-    color: #e9ba36  
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0.5vw;
 }
 
-.slytherin {
-    background-color: #588c39;
-    color: #c0b1c6  
+[data-house] {
+  font-weight: bold;
+  font-size: 1em;
+  font-family: sans-serif;
+  cursor: default;
 }
+
+.removeThis, .addThis, .begone {
+
+  font-size: 1em;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+table {
+
+  padding: 1em;
+}
+
+table tr {
+
+  font-family: sans-serif;
+}
+.removeThis:hover, .addThis:hover, .begone:hover {
+
+  font-size: 1em;
+  font-family: sans-serif;
+  cursor: pointer;
+  color: grey;
+  transition: .15s ease-in;
+
+}
+
+[data-fullname] {
+
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5em;
+  color: black;
+  cursor: pointer;
+}
+
+[data-fullname]:hover {
+  color: black;
+  transition: .2s ease-in;
+
+}
+
+#filter-content {
+  display: inline;
+  font-size: 1.2em;
+  text-align: center;
+  font-family: oswald, serif;
+  font-weight: 500;
+  cursor: default;
+  color: var(--gold);
+}
+
+
+
+.house-item:hover {
+  color: var(--dark-gold);
+  transition: 0.2s ease-in;
+}
+
+.house-item {
+  display: inline-block;
+  padding: 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.gryffindor-font {
+  color: darkred;
+}
+
+#sort-content {
+  display: inline;
+  font-size: 1.2em;
+  text-align: center;
+  font-family: oswald, serif;
+  cursor: default;
+}
+
+.sort-item {
+  display: inline-block;
+  padding: 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button {
+  float: right;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+  font-family: sans-serif;
+  padding-right: 1vw;
+}
+
+#modal {
+  background-color: white;
+  width: 40vw;
+  height: 50vh;
+  position: fixed;
+  text-align: center;
+  overflow: hidden;
+  top: 10vw;
+  right: 30vw;
+  opacity: 1;
+  display: none;
+  border-bottom: 3px solid rgb(71, 71, 71);
+  border-left: 3px solid rgb(71, 71, 71);
+  border-right: 3px solid rgb(214, 213, 213);
+  border-top: 3px solid rgb(214, 213, 213);
+}
+
+
+#squad {
+  background-color: white;
+  width: 40vw;
+  height: 50vh;
+  position: fixed;
+  text-align: center;
+  overflow: hidden;
+  top: 10vw;
+  right: 30vw;
+  opacity: 1;
+  display: none;
+  border-bottom: 3px solid rgb(71, 71, 71);
+  border-left: 3px solid rgb(71, 71, 71);
+  border-right: 3px solid rgb(214, 213, 213);
+  border-top: 3px solid rgb(214, 213, 213);
+}
+
+.modal-fullname {
+  font-size: 2em;
+  padding-left: 1vw;
+  font-family: "Dancing Script", cursive;
+}
+
+.modal-house {
+  font-size: 1em;
+  font-family: sans-serif;
+  position: relative;
+  font-weight: bold;
+  top: -1.5vw;
+}
+
+#modal.gryffindor {
+  background-color: #ce3a0a;
+}
+
+#modal.hufflepuf {
+  background-color: #ffc02a;
+  color: #0b0000;
+}
+
+#modal.ravenclaw {
+  background-color: #395f9d;
+  color: #e9ba36;
+}
+
+#modal.slytherin {
+  background-color: #588c39;
+  color: #c0b1c6;
+}
+
+#modal.show {
+  display: block;
+  z-index: 2;
+}
+
+#squad.showSquad {
+  display: block;
+  z-index: 2;
+}
+
+.expel {
+
+  font-size: 1em;
+  font-family: sans-serif;
+  cursor: pointer;
+  font-weight: bold;
+  
+  }
+
+  .expel:hover {
+
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: .1s ease-in;
+    
+    }

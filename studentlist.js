@@ -23,7 +23,78 @@ function init() {
   document.querySelector(".lastname").addEventListener("click", sortByLastname);
   document.querySelector(".house").addEventListener("click", sortByHouse);
 
+}
 
+//fetches json data from teachers json
+
+async function getJson() {
+  
+  let myJson = await fetch("http://petlatkea.dk/2019/hogwarts/students.json");
+
+  students = await myJson.json();
+
+  showList();
+}
+
+
+//split the name into firstname and last name again, also added first letter of last name to match image to students and sets to lower case
+
+function imageNameFinder(student) {
+
+  const firstSpace = student.fullname.indexOf(" ");
+  const lastSpace = student.fullname.lastIndexOf(" ");
+  
+  const firstName = student.fullname.slice(0, firstSpace);
+  const lastName = student.fullname.slice(lastSpace + 1)
+
+  let firstLetterFirstName = firstName.substring(0, 1);
+  let imageName = lastName + "_" + firstLetterFirstName + ".png";
+
+  imageName = imageName.toLowerCase();
+
+  showModal(imageName, student)
+
+}
+
+function showModal(imageName, student) {
+  console.log("modal");
+
+  modal.classList.add("show");
+  modal.querySelector(".modal-fullname").textContent = student.fullname;
+  modal.querySelector(".modal-house").textContent = student.house;
+  modal.querySelector(".modal-img").src = "images/" + imageName;
+  modal.querySelector("button").addEventListener("click", hideModal);
+  modal.className = "show";
+
+  // modal.classList.add(house.toLowerCase());
+
+  // too many if statements, so I tried switch instead - I made some cases, and added a default
+
+  switch (student.house) {
+    case "Gryffindor":
+      modal.classList.add("gryffindor");
+      break;
+
+    case "Hufflepuff":
+      modal.classList.add("hufflepuf");
+      break;
+
+    case "Slytherin":
+      modal.classList.add("slytherin");
+      break;
+
+    case "Ravenclaw":
+      modal.classList.add("ravenclaw");
+      break;
+
+    default:
+      alert("Not a real Hogwarts House");
+      break;
+  }
+}
+//basically just the x on the modul 
+function hideModal() {
+  modal.classList.remove("show");
 }
 
 //empties container and sets tilferType to what data category you click
@@ -38,15 +109,7 @@ function filtrering() {
   showList();
 }
 
-//fetches json data from teachers json
 
-async function getJson() {
-  let myJson = await fetch("students1991.json");
-
-  students = await myJson.json();
-
-  showList();
-}
 
 //empties container, sort by compare first name
 
@@ -66,30 +129,37 @@ function sortByLastname() {
 
 //empties container, sort by house
 
-
 function sortByHouse() {
   postContainer.textContent = "";
   students.sort(compareHouse);
   showList();
 }
 
-//these fuunctions use the parameter student and splits the fullname into first and last name - first name is index [0] and last name is [1]
-//split happens after ""
+//these fuunctions use the parameter student and splits the fullname into first, middle and last name
 
 function getFirstname(student){
-  return student.fullname.split(" ")[0];
+  
+  const firstSpace = student.fullname.indexOf(" ");
+  const firstName = student.fullname.slice(0, firstSpace);
+
+  return firstName;
 }
 
 function getLastname(student){
-  return student.fullname.split(" ")[1];
+
+  const lastSpace = student.fullname.lastIndexOf(" ");
+  const lastName = student.fullname.slice(lastSpace + 1);
+
+  return lastName;
 }
 
-//these functions compare names by having two variables set to a and b (cause you need 2 things to compare). If one is bigger than the other, returns the lowest one (-1) last and vica versa 
+//these functions compare names by having two variables set to a and b. If one is bigger than the other, returns the lowest one (-1) last and vica versa 
 //javascript can sort alphabetically and knows to return the last letter of alphabet as lowest value
 
 //return 0 is in case a name is repeated (i.e. if you have Emma Roberts and Emma Watson)
 
 function compareFirstname(a,b) {
+
   let aFirstname = getFirstname(a);
   let bFirstname = getFirstname(b);
 
@@ -123,6 +193,7 @@ function compareHouse(a,b) {
   return 0;
 }
 
+
 //this is the part where we clone the data (forEach clone data - also added a pop up module if you click on fullname, to get more details)
 
 function showList() {
@@ -132,7 +203,7 @@ function showList() {
     if (student.house == filterType || filterType == "all") {
       clone.querySelector("[data-fullname]").textContent = student.fullname;
       clone.querySelector("[data-fullname]").addEventListener("click", () => {
-        showModal(student);
+        imageNameFinder(student);
       });
       clone.querySelector("[data-house]").textContent = student.house;
       postContainer.appendChild(clone);
@@ -140,52 +211,4 @@ function showList() {
   });
 }
 
-//split the name into firstname and last name again, also added first letter of last name to match image to students. Had to make it all lowercase as it automatically took last name with upper case. Added class show, as my modul is default by display: none
 
-function showModal(stud) {
-  console.log("modal");
-
-  let name = stud.fullname.split(" ");
-  let firstName = name[0];
-  let lastName = name[1];
-  let firstLetterFirstName = firstName.substring(0, 1);
-  let imageName = lastName + "_" + firstLetterFirstName + ".png";
-  imageName = imageName.toLowerCase();
-
-  modal.classList.add("show");
-  modal.querySelector(".modal-fullname").textContent = stud.fullname;
-  modal.querySelector(".modal-house").textContent = stud.house;
-  modal.querySelector(".modal-img").src = "images/" + imageName;
-  modal.querySelector("button").addEventListener("click", hideModal);
-  modal.className = "show";
-
-  // too many if statements, so I tried switch instead (yay) - I made some cases, and added a default in case there was no house match
-
-  //modal.classList.add(house.toLowerCase());
-
-  switch (stud.house) {
-    case "Gryffindor":
-      modal.classList.add("gryffindor");
-      break;
-
-    case "Hufflepuff":
-      modal.classList.add("hufflepuf");
-      break;
-
-    case "Slytherin":
-      modal.classList.add("slytherin");
-      break;
-
-    case "Ravenclaw":
-      modal.classList.add("ravenclaw");
-      break;
-
-    default:
-      alert("Not a real Hogwarts House");
-      break;
-  }
-}
-//basically just the x on the modul 
-function hideModal() {
-  modal.classList.remove("show");
-}
