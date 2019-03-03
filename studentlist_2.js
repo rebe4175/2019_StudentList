@@ -535,7 +535,6 @@ function createSquadTable() {
 
 function showModal(student) {
   
-
     modal.classList.add("show");
     modal.querySelector(".modal-fullname").textContent = student.firstName + student.lastName;
     modal.querySelector(".modal-house").textContent = student.house;
@@ -543,29 +542,36 @@ function showModal(student) {
     modal.querySelector(".modal-img").src = "images/" + student.image;
     modal.querySelector("button").addEventListener("click", hideModal);
 
-    switch (student.house) {
+   
+   if (student.house === "Gryffindor") {
 
-        case "Gryffindor":
-          modal.classList.add("gryffindor");
-          break;
-    
-        case "Hufflepuff":
-          modal.classList.add("hufflepuf");
-          break;
-    
-        case "Slytherin":
-          modal.classList.add("slytherin");
-          break;
-    
-        case "Ravenclaw":
-          modal.classList.add("ravenclaw");
-          break;
-    
-        default:
-          alert("Not a real Hogwarts House");
-          break;
+    modal.classList.remove("slytherin");
+    modal.classList.remove("ravenclaw");
+    modal.classList.remove("hufflepuf");
+    modal.classList.add("gryffindor");
 
-      }
+   } else if (student.house === "Hufflepuff") {
+
+    modal.classList.remove("griffindor");
+    modal.classList.remove("slytherin");
+    modal.classList.remove("ravenclaw");
+      modal.classList.add("hufflepuf");
+
+    } else if (student.house === "Slytherin") {
+
+      modal.classList.remove("griffindor");
+      modal.classList.remove("hufflepuf");
+      modal.classList.remove("ravenclaw");
+      modal.classList.add("slytherin");
+
+    } else if (student.house === "Ravenclaw") {
+
+      modal.classList.remove("griffindor");
+      modal.classList.remove("slytherin");
+      modal.classList.remove("hufflepuf");
+      modal.classList.add("ravenclaw");
+
+    }
 }
 
 function hideModal() {
